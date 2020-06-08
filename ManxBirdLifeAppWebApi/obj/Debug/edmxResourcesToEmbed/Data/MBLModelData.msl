@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ManxBirdLifeAppModelStoreContainer" CdmEntityContainer="ManxBirdLifeAppEntities">
+    <EntitySetMapping Name="LocationLookups">
+      <EntityTypeMapping TypeName="ManxBirdLifeAppModel.LocationLookup">
+        <MappingFragment StoreEntitySet="LocationLookup">
+          <ScalarProperty Name="boolApprovedByAdmin" ColumnName="boolApprovedByAdmin" />
+          <ScalarProperty Name="boolManuallyAddedRecord" ColumnName="boolManuallyAddedRecord" />
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GridReference" ColumnName="GridReference" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MBL_SightDetails">
+      <EntityTypeMapping TypeName="ManxBirdLifeAppModel.MBL_SightDetails">
+        <MappingFragment StoreEntitySet="MBL_SightDetails">
+          <ScalarProperty Name="SightDetailsID" ColumnName="SightDetailsID" />
+          <ScalarProperty Name="SightReportUserID" ColumnName="SightReportUserID" />
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="GridReference" ColumnName="GridReference" />
+          <ScalarProperty Name="SightDateTime" ColumnName="SightDateTime" />
+          <ScalarProperty Name="SubmitDateTime" ColumnName="SubmitDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MBL_SightReportUser">
+      <EntityTypeMapping TypeName="ManxBirdLifeAppModel.MBL_SightReportUser">
+        <MappingFragment StoreEntitySet="MBL_SightReportUser">
+          <ScalarProperty Name="boolPermissionToContact" ColumnName="boolPermissionToContact" />
+          <ScalarProperty Name="SightReportUserID" ColumnName="SightReportUserID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="boolKeepAnonymous" ColumnName="boolKeepAnonymous" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MBL_SpeciesSightingDetails">
+      <EntityTypeMapping TypeName="ManxBirdLifeAppModel.MBL_SpeciesSightingDetails">
+        <MappingFragment StoreEntitySet="MBL_SpeciesSightingDetails">
+          <ScalarProperty Name="boolOverrideSensitiveSpeciesRecord" ColumnName="boolOverrideSensitiveSpeciesRecord" />
+          <ScalarProperty Name="SpeciesSightingDetailsID" ColumnName="SpeciesSightingDetailsID" />
+          <ScalarProperty Name="SightDetailsID" ColumnName="SightDetailsID" />
+          <ScalarProperty Name="SpeciesID" ColumnName="SpeciesID" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Approximation" ColumnName="Approximation" />
+          <ScalarProperty Name="boolSensitiveSpeciesRecord" ColumnName="boolSensitiveSpeciesRecord" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MBL_SpeciesSightingUploadFile">
+      <EntityTypeMapping TypeName="ManxBirdLifeAppModel.MBL_SpeciesSightingUploadFile">
+        <MappingFragment StoreEntitySet="MBL_SpeciesSightingUploadFile">
+          <ScalarProperty Name="SpeciesSightingUploadFileID" ColumnName="SpeciesSightingUploadFileID" />
+          <ScalarProperty Name="SpeciesSightingDetailsID" ColumnName="SpeciesSightingDetailsID" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpeciesLookups">
+      <EntityTypeMapping TypeName="ManxBirdLifeAppModel.SpeciesLookup">
+        <MappingFragment StoreEntitySet="SpeciesLookup">
+          <ScalarProperty Name="boolApprovedByAdmin" ColumnName="boolApprovedByAdmin" />
+          <ScalarProperty Name="boolManuallyAddedRecord" ColumnName="boolManuallyAddedRecord" />
+          <ScalarProperty Name="SpeciesID" ColumnName="SpeciesID" />
+          <ScalarProperty Name="TaxaLevel" ColumnName="TaxaLevel" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SensitiveStartDate" ColumnName="SensitiveStartDate" />
+          <ScalarProperty Name="SensitiveEndDate" ColumnName="SensitiveEndDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

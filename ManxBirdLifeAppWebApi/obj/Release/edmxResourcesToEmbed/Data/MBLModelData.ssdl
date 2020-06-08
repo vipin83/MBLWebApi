@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ManxBirdLifeAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="LocationLookup">
+    <Key>
+      <PropertyRef Name="LocationID" />
+    </Key>
+    <Property Name="LocationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="GridReference" Type="nvarchar" MaxLength="50" />
+    <Property Name="boolManuallyAddedRecord" Type="bit" />
+    <Property Name="boolApprovedByAdmin" Type="bit" />
+  </EntityType>
+  <EntityType Name="MBL_SightDetails">
+    <Key>
+      <PropertyRef Name="SightDetailsID" />
+    </Key>
+    <Property Name="SightDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SightReportUserID" Type="int" Nullable="false" />
+    <Property Name="LocationID" Type="int" Nullable="false" />
+    <Property Name="GridReference" Type="nvarchar" MaxLength="50" />
+    <Property Name="SightDateTime" Type="datetime" Nullable="false" />
+    <Property Name="SubmitDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MBL_SightReportUser">
+    <Key>
+      <PropertyRef Name="SightReportUserID" />
+    </Key>
+    <Property Name="SightReportUserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="boolKeepAnonymous" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MBL_SpeciesSightingDetails">
+    <Key>
+      <PropertyRef Name="SpeciesSightingDetailsID" />
+    </Key>
+    <Property Name="SpeciesSightingDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SightDetailsID" Type="int" Nullable="false" />
+    <Property Name="SpeciesID" Type="int" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="Approximation" Type="nvarchar" MaxLength="50" />
+    <Property Name="boolSensitiveSpeciesRecord" Type="bit" Nullable="false" />
+    <Property Name="Details" Type="nvarchar(max)" />
+    <Property Name="boolOverrideSensitiveSpeciesRecord" Type="bit" />
+  </EntityType>
+  <EntityType Name="MBL_SpeciesSightingUploadFile">
+    <Key>
+      <PropertyRef Name="SpeciesSightingUploadFileID" />
+    </Key>
+    <Property Name="SpeciesSightingUploadFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SpeciesSightingDetailsID" Type="int" Nullable="false" />
+    <Property Name="FileName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SpeciesLookup">
+    <Key>
+      <PropertyRef Name="SpeciesID" />
+    </Key>
+    <Property Name="SpeciesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaxaLevel" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SensitiveStartDate" Type="datetime" />
+    <Property Name="SensitiveEndDate" Type="datetime" />
+    <Property Name="boolManuallyAddedRecord" Type="bit" />
+    <Property Name="boolApprovedByAdmin" Type="bit" />
+  </EntityType>
+  <Association Name="FK_MBL_SightDetails_LocationLookup">
+    <End Role="LocationLookup" Type="Self.LocationLookup" Multiplicity="1" />
+    <End Role="MBL_SightDetails" Type="Self.MBL_SightDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocationLookup">
+        <PropertyRef Name="LocationID" />
+      </Principal>
+      <Dependent Role="MBL_SightDetails">
+        <PropertyRef Name="LocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MBL_SightDetails_MBL_SightReportUser">
+    <End Role="MBL_SightReportUser" Type="Self.MBL_SightReportUser" Multiplicity="1" />
+    <End Role="MBL_SightDetails" Type="Self.MBL_SightDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MBL_SightReportUser">
+        <PropertyRef Name="SightReportUserID" />
+      </Principal>
+      <Dependent Role="MBL_SightDetails">
+        <PropertyRef Name="SightReportUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MBL_SpeciesSightingDetails_MBL_SightDetails">
+    <End Role="MBL_SightDetails" Type="Self.MBL_SightDetails" Multiplicity="1" />
+    <End Role="MBL_SpeciesSightingDetails" Type="Self.MBL_SpeciesSightingDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MBL_SightDetails">
+        <PropertyRef Name="SightDetailsID" />
+      </Principal>
+      <Dependent Role="MBL_SpeciesSightingDetails">
+        <PropertyRef Name="SightDetailsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MBL_SpeciesSightingDetails_SpeciesLookup">
+    <End Role="SpeciesLookup" Type="Self.SpeciesLookup" Multiplicity="1" />
+    <End Role="MBL_SpeciesSightingDetails" Type="Self.MBL_SpeciesSightingDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpeciesLookup">
+        <PropertyRef Name="SpeciesID" />
+      </Principal>
+      <Dependent Role="MBL_SpeciesSightingDetails">
+        <PropertyRef Name="SpeciesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MBL_SpeciesSightingUploadFile_MBL_SpeciesSightingDetails">
+    <End Role="MBL_SpeciesSightingDetails" Type="Self.MBL_SpeciesSightingDetails" Multiplicity="1" />
+    <End Role="MBL_SpeciesSightingUploadFile" Type="Self.MBL_SpeciesSightingUploadFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MBL_SpeciesSightingDetails">
+        <PropertyRef Name="SpeciesSightingDetailsID" />
+      </Principal>
+      <Dependent Role="MBL_SpeciesSightingUploadFile">
+        <PropertyRef Name="SpeciesSightingDetailsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ManxBirdLifeAppModelStoreContainer">
+    <EntitySet Name="LocationLookup" EntityType="Self.LocationLookup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MBL_SightDetails" EntityType="Self.MBL_SightDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MBL_SightReportUser" EntityType="Self.MBL_SightReportUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MBL_SpeciesSightingDetails" EntityType="Self.MBL_SpeciesSightingDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MBL_SpeciesSightingUploadFile" EntityType="Self.MBL_SpeciesSightingUploadFile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SpeciesLookup" EntityType="Self.SpeciesLookup" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_MBL_SightDetails_LocationLookup" Association="Self.FK_MBL_SightDetails_LocationLookup">
+      <End Role="LocationLookup" EntitySet="LocationLookup" />
+      <End Role="MBL_SightDetails" EntitySet="MBL_SightDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MBL_SightDetails_MBL_SightReportUser" Association="Self.FK_MBL_SightDetails_MBL_SightReportUser">
+      <End Role="MBL_SightReportUser" EntitySet="MBL_SightReportUser" />
+      <End Role="MBL_SightDetails" EntitySet="MBL_SightDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MBL_SpeciesSightingDetails_MBL_SightDetails" Association="Self.FK_MBL_SpeciesSightingDetails_MBL_SightDetails">
+      <End Role="MBL_SightDetails" EntitySet="MBL_SightDetails" />
+      <End Role="MBL_SpeciesSightingDetails" EntitySet="MBL_SpeciesSightingDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MBL_SpeciesSightingDetails_SpeciesLookup" Association="Self.FK_MBL_SpeciesSightingDetails_SpeciesLookup">
+      <End Role="SpeciesLookup" EntitySet="SpeciesLookup" />
+      <End Role="MBL_SpeciesSightingDetails" EntitySet="MBL_SpeciesSightingDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MBL_SpeciesSightingUploadFile_MBL_SpeciesSightingDetails" Association="Self.FK_MBL_SpeciesSightingUploadFile_MBL_SpeciesSightingDetails">
+      <End Role="MBL_SpeciesSightingDetails" EntitySet="MBL_SpeciesSightingDetails" />
+      <End Role="MBL_SpeciesSightingUploadFile" EntitySet="MBL_SpeciesSightingUploadFile" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="75bf935aeccd4813bb9e39eea2060300" Name="Diagram1">
+        <EntityTypeShape EntityType="ManxBirdLifeAppModel.LocationLookup" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManxBirdLifeAppModel.MBL_SightDetails" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManxBirdLifeAppModel.MBL_SightReportUser" Width="1.5" PointX="0.875" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManxBirdLifeAppModel.MBL_SpeciesSightingDetails" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManxBirdLifeAppModel.MBL_SpeciesSightingUploadFile" Width="1.5" PointX="7.875" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManxBirdLifeAppModel.SpeciesLookup" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="ManxBirdLifeAppModel.FK_MBL_SightDetails_LocationLookup" ManuallyRouted="false" />
+        <AssociationConnector Association="ManxBirdLifeAppModel.FK_MBL_SightDetails_MBL_SightReportUser" ManuallyRouted="false" />
+        <AssociationConnector Association="ManxBirdLifeAppModel.FK_MBL_SpeciesSightingDetails_MBL_SightDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="ManxBirdLifeAppModel.FK_MBL_SpeciesSightingDetails_SpeciesLookup" ManuallyRouted="false" />
+        <AssociationConnector Association="ManxBirdLifeAppModel.FK_MBL_SpeciesSightingUploadFile_MBL_SpeciesSightingDetails" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
